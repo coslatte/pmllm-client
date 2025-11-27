@@ -38,7 +38,7 @@ const UserMenu = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-16 left-0 w-64 rounded-3xl border border-zinc-200 bg-white p-5 text-sm text-zinc-600 shadow-xl">
+        <div className="absolute bottom-16 left-0 w-64 rounded-3xl border border-zinc-200 bg-white/90 p-5 text-sm text-zinc-600 shadow-xl backdrop-blur">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-base font-semibold text-zinc-900">
