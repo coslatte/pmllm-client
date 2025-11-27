@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added docs folder with overview.md describing the music recommendation system architecture
 - Added Spanish documentation in `docs/es_ES/overview.md` for bilingual support
 - Added `react-icons` dependency for UI components
+- **UI Enhancement**: Fixed header positioning with dynamic titles based on active section (Chat/Recommendations/Connections)
 
 ### Changed
 

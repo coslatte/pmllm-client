@@ -35,11 +35,24 @@ const ChatWorkspace = () => {
   const [activeSection, setActiveSection] = useState("chat");
   const isChatView = activeSection === "chat";
 
+  const getHeaderTitle = () => {
+    switch (activeSection) {
+      case "chat":
+        return "Chat";
+      case "recommendations":
+        return "Recommendations";
+      case "connections":
+        return "Connections";
+      default:
+        return "Chat";
+    }
+  };
+
   return (
     <div className="relative flex min-h-screen flex-col bg-white text-zinc-900">
-      <ChatHeader />
+      <ChatHeader title={getHeaderTitle()} />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-24">
         <div className="mx-auto flex h-full w-full max-w-5xl flex-col gap-10 px-6 py-8">
           {(() => {
             if (activeSection === "chat") {

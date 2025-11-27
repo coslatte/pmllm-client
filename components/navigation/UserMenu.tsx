@@ -24,7 +24,7 @@ const UserMenu = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="pointer-events-auto relative w-48">
+    <div ref={containerRef} className="pointer-events-auto relative w-full">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}

@@ -19,6 +19,7 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Agregada carpeta docs con overview.md describiendo la arquitectura del sistema de recomendaciones musicales
 - Agregada documentación en español en `docs/es_ES/overview.md` para soporte bilingüe
 - Agregada dependencia `react-icons` para componentes de UI
+- **Mejora de UI**: Header fijo con títulos dinámicos basados en la sección activa (Chat/Recommendations/Connections)
 
 ### Cambiado
 
