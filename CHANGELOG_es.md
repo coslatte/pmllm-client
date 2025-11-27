@@ -18,6 +18,7 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Creados CHANGELOG.md y CHANGELOG_es.md para seguimiento de cambios
 - Agregada carpeta docs con overview.md describiendo la arquitectura del sistema de recomendaciones musicales
 - Agregada documentación en español en `docs/es_ES/overview.md` para soporte bilingüe
+- Agregada dependencia `react-icons` para componentes de UI
 
 ### Cambiado
 
@@ -27,6 +28,10 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Actualizada documentación para enfatizar patrones de uso de Tailwind CSS v4 y referencias
 - Agregados requisitos de mantenimiento de documentación bilingüe a las instrucciones de IA
 
+### Corregido
+
+- Corregido error de tipo TypeScript en `useChatSession.ts` cambiando `RefObject<HTMLDivElement>` por `React.RefObject<HTMLDivElement>` para compatibilidad de tipos adecuada
+
 ### Detalles Técnicos
 
 - Framework: Next.js 16 con App Router
@@ -34,3 +39,4 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Gestor de Paquetes: pnpm
 - TypeScript: Modo estricto habilitado
 - ESLint: Formato de configuración flat con presets de Next.js
+- Iconos UI: react-icons (^5.5.0) para iconos de componentes

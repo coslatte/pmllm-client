@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created CHANGELOG.md and CHANGELOG_es.md for change tracking
 - Added docs folder with overview.md describing the music recommendation system architecture
 - Added Spanish documentation in `docs/es_ES/overview.md` for bilingual support
+- Added `react-icons` dependency for UI components
 
 ### Changed
 
@@ -27,6 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated documentation to emphasize Tailwind CSS v4 usage patterns and references
 - Added bilingual documentation maintenance requirements to AI instructions
 
+### Fixed
+
+- Fixed TypeScript type error in `useChatSession.ts` by changing `RefObject<HTMLDivElement>` to `React.RefObject<HTMLDivElement>` for proper type compatibility
+
 ### Technical Details
 
 - Framework: Next.js 16 with App Router
@@ -34,3 +39,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Package Manager: pnpm
 - TypeScript: Strict mode enabled
 - ESLint: Flat config format with Next.js presets
+- UI Icons: react-icons (^5.5.0) for component icons
