@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ChatComposer from "@/components/chat/ChatComposer";
 import ChatHeader from "@/components/chat/ChatHeader";
@@ -11,8 +11,8 @@ import RecommendationsPanel from "@/components/recommendations/RecommendationsPa
 import { useChatSession } from "@/hooks/useChatSession";
 
 const PlaceholderPanel = ({ label }: { label: string }) => (
-  <section className="rounded-3xl border border-dashed border-zinc-200 bg-white/70 px-6 py-16 text-center">
-    <p className="text-sm font-semibold uppercase tracking-wide text-blue-500">
+  <section className="rounded-3xl border border-dashed border-zinc-200 bg-white/70 px-6 py-16 text-center backdrop-blur dark:border-indigo-700/60 dark:bg-indigo-950/60">
+    <p className="text-sm font-semibold uppercase tracking-wide text-indigo-500">
       {label}
     </p>
     <h2 className="mt-4 text-2xl font-semibold text-zinc-900">Coming soon</h2>
@@ -33,7 +33,32 @@ const ChatWorkspace = () => {
     handleSubmit,
   } = useChatSession();
   const [activeSection, setActiveSection] = useState("chat");
+  const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
   const isChatView = activeSection === "chat";
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = window.localStorage.getItem("pmllm-theme");
+    if (stored === "light" || stored === "dark") {
+      setThemeMode(stored);
+      return;
+    }
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setThemeMode(prefersDark ? "dark" : "light");
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof window === "undefined") return;
+    const root = document.documentElement;
+    root.dataset.theme = themeMode;
+    root.classList.toggle("dark", themeMode === "dark");
+    window.localStorage.setItem("pmllm-theme", themeMode);
+  }, [themeMode]);
+
+  const handleToggleTheme = () => {
+    setThemeMode((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
   const getHeaderTitle = () => {
     switch (activeSection) {
@@ -49,8 +74,12 @@ const ChatWorkspace = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-white text-zinc-900">
-      <ChatHeader title={getHeaderTitle()} />
+    <div className="relative flex min-h-screen flex-col bg-white/95 text-zinc-900 backdrop-blur dark:bg-[#101430]/95 dark:text-indigo-100">
+      <ChatHeader
+        title={getHeaderTitle()}
+        themeMode={themeMode}
+        onToggleTheme={handleToggleTheme}
+      />
 
       <main className="flex-1 pt-24">
         <div className="mx-auto flex h-full w-full max-w-5xl flex-col gap-10 px-6 py-8">

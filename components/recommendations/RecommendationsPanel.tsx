@@ -17,11 +17,11 @@ const RecommendationsPanel = () => {
   return (
     <section
       id="recommendations"
-      className="rounded-4xl border border-zinc-100 bg-white/90 px-6 py-8 shadow-xl shadow-blue-100/50"
+      className="rounded-4xl border border-zinc-100 bg-white/90 px-6 py-8 shadow-xl shadow-indigo-100/60 backdrop-blur dark:border-indigo-800/50 dark:bg-indigo-950/70 dark:shadow-black/40"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-blue-500">
+          <p className="text-xs font-semibold uppercase tracking-wide text-indigo-500">
             Basado en tus reproducciones recientes
           </p>
           <h2 className="text-2xl font-semibold text-zinc-950">Álbumes para tu próximo bloque</h2>
@@ -33,7 +33,7 @@ const RecommendationsPanel = () => {
           <button
             type="button"
             onClick={handleShowMore}
-            className="inline-flex items-center justify-center rounded-2xl border border-blue-200 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
+            className="inline-flex items-center justify-center rounded-2xl border border-indigo-200 bg-indigo-50/90 px-4 py-2 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-100/90 backdrop-blur dark:border-indigo-700/60 dark:bg-indigo-900/60 dark:text-indigo-200 dark:hover:bg-indigo-800/60"
           >
             Más recomendaciones
           </button>

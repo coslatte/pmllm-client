@@ -2,8 +2,9 @@ import { ChatMessage } from "@/lib/types/chat";
 import { FiUser, FiMessageSquare } from "react-icons/fi";
 
 const bubbleStyles = {
-  user: "bg-blue-600 text-white",
-  assistant: "bg-zinc-50 text-zinc-800 border border-zinc-100",
+  user: "bg-indigo-600 text-white",
+  assistant:
+    "bg-white/90 text-slate-800 border border-slate-100 backdrop-blur dark:bg-indigo-950/70 dark:text-indigo-100 dark:border-indigo-800/60",
 };
 
 type MessageBubbleProps = {
@@ -21,7 +22,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
           {isUser ? "You" : "pmLLM"}
         </span>
         <div
-          className={`rounded-3xl px-5 py-4 text-sm leading-relaxed shadow-sm ${
+          className={`rounded-3xl px-5 py-4 text-sm leading-relaxed shadow-sm dark:shadow-black/30 ${
             bubbleStyles[message.role]
           }`}
         >
@@ -30,7 +31,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
         <div className="flex items-center gap-4 text-xs text-zinc-400">
           <span>{message.timestamp}</span>
           {!isUser && message.confidence && (
-            <span className="font-medium text-blue-500">
+            <span className="font-medium text-indigo-400">
               Confidence · {message.confidence}
             </span>
           )}
@@ -40,7 +41,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
             {message.citations.map((source) => (
               <span
                 key={source}
-                className="rounded-full border border-zinc-200 px-3 py-1 text-[11px] uppercase tracking-wide"
+                className="rounded-full border border-indigo-100 bg-white/80 px-3 py-1 text-[11px] uppercase tracking-wide backdrop-blur dark:border-indigo-700/60 dark:bg-indigo-950/40"
               >
                 {source}
               </span>
