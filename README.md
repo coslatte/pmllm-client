@@ -1,8 +1,8 @@
 # PM LLM Client
 
-A modern web client for a music recommendation system powered by Retrieval-Augmented Generation (RAG) and Knowledge Graph technology. Built with Next.js 16, this interface provides an intuitive way to interact with a Gemma 3-powered backend for music discovery, recommendations, and knowledge exploration.
+A modern web client for a music recommendation system powered by Retrieval-Augmented Generation (RAG) and Knowledge Graph technology. Built with Next.js 16, this interface provides an intuitive way to interact with a backend AI system for music discovery, recommendations, and knowledge exploration.
 
-## 🎵 Features
+## Features
 
 - **Interactive Chat Interface**: Natural language conversations with the AI for music-related queries
 - **Personalized Recommendations**: Get tailored music suggestions based on your preferences
@@ -11,23 +11,23 @@ A modern web client for a music recommendation system powered by Retrieval-Augme
 - **Real-time Responses**: Live confidence scores and citations for AI responses
 - **Session Management**: Persistent chat history and recommendation tracking
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 (exclusive - no custom CSS)
 - **Icons**: React Icons
 - **Backend**: REST API integration with RAG + KG system
-- **AI Model**: Gemma 3 integration
+- **AI Model**: Integration with a language model (to be decided)
 - **Package Manager**: pnpm
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+ (recommended: 22.14.0)
 - pnpm package manager
 - Git
 
-## 🚀 Installation
+## Installation
 
 1. **Clone the repository**
 
@@ -51,7 +51,7 @@ A modern web client for a music recommendation system powered by Retrieval-Augme
 4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 📖 Development
+## Development
 
 ### Available Scripts
 
@@ -82,7 +82,7 @@ pmllm-client/
 └── .github/             # AI agent instructions
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### Frontend Architecture
 
@@ -99,13 +99,13 @@ Connects to a RAG + Knowledge Graph system featuring:
 
 - **Knowledge Graph**: MusicBrainz data with artist, recording, and genre relationships
 - **Vector Store**: Milvus for embedding-based retrieval
-- **AI Model**: Gemma 3 for natural language generation
+- **AI Model**: A language model (to be decided) for natural language generation
 - **API Endpoints**:
   - `/recommend` - Personalized music recommendations
   - `/connect` - Knowledge graph relationship exploration
   - `/ask` - General chatbot queries
 
-## 📚 Documentation
+## Documentation
 
 ### English Documentation
 
@@ -121,14 +121,6 @@ Connects to a RAG + Knowledge Graph system featuring:
 
 - [.github/copilot-instructions.md](.github/copilot-instructions.md) - Guidelines for AI coding assistants
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ### Development Guidelines
 
 - **Code Style**: Follow the existing TypeScript and ESLint configuration
@@ -136,14 +128,4 @@ Connects to a RAG + Knowledge Graph system featuring:
 - **Language**: All code generation responses must be in English
 - **Documentation**: Maintain bilingual documentation (English + Spanish)
 - **Commits**: Use conventional commit messages
-
-## 📄 License
-
-This project is private and proprietary. All rights reserved.
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
-- Fonts: [Geist](https://vercel.com/font) by Vercel
+- **No emojis in documentation or developer-facing text**: Do not include emoji characters in `docs/`, `README.md`, changelogs, commit messages, code comments, or generated UI text unless explicitly requested. Keep documentation plain, professional, and searchable.

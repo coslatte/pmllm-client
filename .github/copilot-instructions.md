@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a Next.js 16 client application for a music recommendation system using Retrieval-Augmented Generation (RAG) and Knowledge Graph technology. The client provides an interactive web interface for users to chat with a Gemma 3-powered LLM backend, explore music recommendations, and discover relationships in a music knowledge graph derived from MusicBrainz data.
+This is a Next.js 16 client application for a music recommendation system using Retrieval-Augmented Generation (RAG) and Knowledge Graph technology. The client provides an interactive web interface for users to chat with a backend AI system, explore music recommendations, and discover relationships in a music knowledge graph derived from MusicBrainz data.
 
 ## Architecture & Structure
 
@@ -54,6 +54,11 @@ This is a Next.js 16 client application for a music recommendation system using 
 - **Bilingual Documentation Maintenance**: Every time documentation is created, modified, or deleted, the corresponding Spanish version must be updated in `docs/es_ES/` to keep both languages synchronized
 - English documentation in `docs/` serves as the source of truth for technical content
 - Spanish documentation in `docs/es_ES/` provides localized versions for Spanish-speaking team members
+
+### Documentation Style
+
+- **No emojis in documentation or developer-facing text**: Do not include emoji characters in `docs/`, `README.md`, changelogs, commit messages, code comments, or generated UI text unless explicitly requested. Documentation should be plain, professional, and searchable.
+- Prefer concise, neutral language for headings, examples, and commit messages. Use Spanish only for docs under `docs/es_ES/` and keep English as the source-of-truth technical language.
 
 ### Configuration
 

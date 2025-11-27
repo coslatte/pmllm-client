@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated documentation to emphasize Tailwind CSS v4 usage patterns and references
 - Added bilingual documentation maintenance requirements to AI instructions
 - **README**: Complete rewrite with comprehensive project information, installation guide, and development workflow
+- **AI Model**: Changed references from specific "Gemma 3" to generic "language model (to be decided)" across all documentation
 
 ### Fixed
 

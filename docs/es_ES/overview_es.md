@@ -1,10 +1,10 @@
 # Overview del Cliente Web: Interfaz para Sistema de Recomendaciones Musicales con RAG
 
-Este repositorio contiene el cliente web (pmllm-client) desarrollado con Next.js 16, TypeScript y Tailwind CSS. Es una interfaz gráfica que actúa como mediador entre el usuario y el backend de procesamiento, proporcionando una experiencia intuitiva para interactuar con un sistema de Knowledge-Graph + Retrieval-Augmented Generation (RAG) basado en un modelo de lenguaje (a decidir).
+Este repositorio contiene el cliente web (pmllm-client) desarrollado con Next.js 16, TypeScript y Tailwind CSS. Es una interfaz gráfica que actúa como mediador entre el usuario y el backend de procesamiento, proporcionando una experiencia intuitiva para interactuar con un sistema de Knowledge-Graph + Retrieval-Augmented Generation (RAG) basado en Gemma 3.
 
 ## Propósito desde la Perspectiva del Usuario
 
-- **Chatbot Interactivo**: Una interfaz de chat clásica donde los usuarios envían prompts (mensajes) y reciben respuestas generadas por el LLM (modelo de lenguaje a decidir) del backend. Las respuestas incluyen explicaciones contextuales, citas de fuentes y puntuaciones de confianza.
+- **Chatbot Interactivo**: Una interfaz de chat clásica donde los usuarios envían prompts (mensajes) y reciben respuestas generadas por el LLM (Gemma 3) del backend. Las respuestas incluyen explicaciones contextuales, citas de fuentes y puntuaciones de confianza.
 - **Sistema de Recomendaciones Musicales**: Una sección dedicada en la UI para obtener recomendaciones personalizadas de cursos, piezas musicales, playlists y recursos relacionados con música, basadas en el conocimiento gráfico y la recuperación de información del backend.
 - **Descubrimiento de Relaciones**: Visualización de conexiones entre temas musicales (géneros, artistas, conceptos teóricos) a través de la interfaz, aprovechando el grafo de conocimiento del backend.
 
@@ -30,7 +30,7 @@ El cliente web se conecta vía API REST al backend, que maneja:
 
 ## Contexto del Sistema Completo
 
-El backend implementa un sistema RAG + KG que utiliza un modelo de lenguaje (a decidir) para generación, sin fine-tuning. Emplea embeddings y vector stores para recuperación, con Neo4j para el grafo de conocimiento derivado de MusicBrainz. El cliente web es la capa de presentación que hace accesible esta funcionalidad avanzada a través de una interfaz amigable.
+El backend implementa un sistema RAG + KG que utiliza Gemma 3 (ej. `google/gemma-3-1b`) para generación, sin fine-tuning. Emplea embeddings y vector stores para recuperación, con Neo4j para el grafo de conocimiento derivado de MusicBrainz. El cliente web es la capa de presentación que hace accesible esta funcionalidad avanzada a través de una interfaz amigable.
 
 ## Funcionalidades Clave del Cliente
 

@@ -29,6 +29,7 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - Actualizada documentación para enfatizar patrones de uso de Tailwind CSS v4 y referencias
 - Agregados requisitos de mantenimiento de documentación bilingüe a las instrucciones de IA
 - **README**: Reescritura completa con información comprehensiva del proyecto, guía de instalación y flujo de desarrollo
+- **Modelo de IA**: Cambiadas referencias de "Gemma 3" específico a genérico "modelo de lenguaje (a decidir)" en toda la documentación
 
 ### Corregido
 
