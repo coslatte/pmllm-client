@@ -27,6 +27,7 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 - **Decisión de Diseño**: Establecido uso exclusivo de Tailwind CSS v4 para todos los estilos, evitando CSS personalizado
 - Actualizada documentación para enfatizar patrones de uso de Tailwind CSS v4 y referencias
 - Agregados requisitos de mantenimiento de documentación bilingüe a las instrucciones de IA
+- **README**: Reescritura completa con información comprehensiva del proyecto, guía de instalación y flujo de desarrollo
 
 ### Corregido
 

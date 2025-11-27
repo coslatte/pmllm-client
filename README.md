@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PM LLM Client
 
-## Getting Started
+A modern web client for a music recommendation system powered by Retrieval-Augmented Generation (RAG) and Knowledge Graph technology. Built with Next.js 16, this interface provides an intuitive way to interact with a Gemma 3-powered backend for music discovery, recommendations, and knowledge exploration.
 
-First, run the development server:
+## 🎵 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Interactive Chat Interface**: Natural language conversations with the AI for music-related queries
+- **Personalized Recommendations**: Get tailored music suggestions based on your preferences
+- **Knowledge Graph Exploration**: Discover relationships between artists, genres, and musical concepts
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Real-time Responses**: Live confidence scores and citations for AI responses
+- **Session Management**: Persistent chat history and recommendation tracking
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 (exclusive - no custom CSS)
+- **Icons**: React Icons
+- **Backend**: REST API integration with RAG + KG system
+- **AI Model**: Gemma 3 integration
+- **Package Manager**: pnpm
+
+## 📋 Prerequisites
+
+- Node.js 18+ (recommended: 22.14.0)
+- pnpm package manager
+- Git
+
+## 🚀 Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/coslatte/pmllm-client.git
+   cd pmllm-client
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+   pnpm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📖 Development
+
+### Available Scripts
+
+- `pnpm run dev` - Start development server
+- `pnpm run build` - Build for production
+- `pnpm run start` - Start production server
+- `pnpm run lint` - Run ESLint
+
+### Project Structure
+
+```
+pmllm-client/
+├── app/                    # Next.js App Router pages
+│   ├── globals.css        # Tailwind CSS v4 configuration
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── chat/             # Chat interface components
+│   └── navigation/       # Navigation components
+├── hooks/                # Custom React hooks
+├── lib/                  # Utilities and constants
+│   ├── constants/        # App constants
+│   ├── types/           # TypeScript type definitions
+│   └── utils/           # Helper functions
+├── docs/                 # Documentation (English)
+├── docs/es_ES/          # Documentation (Spanish)
+├── public/              # Static assets
+└── .github/             # AI agent instructions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗️ Architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The client follows a component-based architecture with:
 
-## Learn More
+- **Pages**: Route-based components in `app/` directory
+- **Components**: Reusable UI components organized by feature
+- **Hooks**: Custom logic for chat sessions, API calls, and state management
+- **Utils**: Helper functions for ID generation, data processing, and formatting
 
-To learn more about Next.js, take a look at the following resources:
+### Backend Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Connects to a RAG + Knowledge Graph system featuring:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Knowledge Graph**: MusicBrainz data with artist, recording, and genre relationships
+- **Vector Store**: Milvus for embedding-based retrieval
+- **AI Model**: Gemma 3 for natural language generation
+- **API Endpoints**:
+  - `/recommend` - Personalized music recommendations
+  - `/connect` - Knowledge graph relationship exploration
+  - `/ask` - General chatbot queries
 
-## Deploy on Vercel
+## 📚 Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### English Documentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Project Overview](docs/overview.md) - Complete architectural overview
+- [CHANGELOG](CHANGELOG.md) - Version history and changes
+
+### Documentación en Español
+
+- [Resumen del Proyecto](docs/es_ES/overview.md) - Resumen arquitectónico completo
+- [Registro de Cambios](CHANGELOG_es.md) - Historial de versiones y cambios
+
+### AI Agent Instructions
+
+- [.github/copilot-instructions.md](.github/copilot-instructions.md) - Guidelines for AI coding assistants
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- **Code Style**: Follow the existing TypeScript and ESLint configuration
+- **Styling**: Use Tailwind CSS v4 classes exclusively (no custom CSS)
+- **Language**: All code generation responses must be in English
+- **Documentation**: Maintain bilingual documentation (English + Spanish)
+- **Commits**: Use conventional commit messages
+
+## 📄 License
+
+This project is private and proprietary. All rights reserved.
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Icons from [React Icons](https://react-icons.github.io/react-icons/)
+- Fonts: [Geist](https://vercel.com/font) by Vercel
