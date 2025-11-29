@@ -41,6 +41,40 @@ The backend implements a RAG + KG system that uses a language model (to be decid
 
 This client transforms the backend's power into an accessible tool for music education, professional practice, and music discovery.
 
+## Current Frontend Surface (November 2025)
+
+- **Workspace Shell**: `app/page.tsx` renders `ChatWorkspace`, a client component that orchestrates the fixed header and the two-column layout (dock + primary area) while remaining responsive.
+- **Dual Sections**: `SectionNav` lets the user switch between the chat stream and the recommendations panel, while also providing a seed chat list with the ability to create new sessions in place.
+- **Theme Persistence**: `ChatHeader` wires the `ThemeToggle` control, persisting the selected mode inside `window.localStorage` (`pmllm-theme`) and syncing it with the CSS variable palette defined in `app/globals.css`.
+- **Persona Drawer**: `UserMenu` exposes a collapsible identity card with focus metadata and genre tags sourced from `lib/constants/chat.ts`, reinforcing the personalization story.
+
+## Chat Experience Deep Dive
+
+1. **State + Streaming Simulation**: `useChatSession` owns the conversation array, user input, responder flag, and scroll anchor. The current implementation seeds messages from `lib/constants/chat.ts`, pushes user prompts, and injects a placeholder assistant response after a short timeout so the UI can be exercised without the backend.
+2. **Message Rendering**: `MessageList` maps `ChatMessage` entities (defined in `lib/types/chat.ts`) to `MessageBubble` components. Assistant bubbles render confidence badges and citation chips when present so backend metadata is visible to the user.
+3. **Composer UX**: `ChatComposer` provides a labeled textarea, disabled submit state while `isResponding` is true, and gradient call-to-action styling aligned with Tailwind v4 tokens. The component emits `handleSubmit` so API wiring can happen centrally inside the hook.
+4. **Auto-Scroll**: The hook's `endOfMessagesRef` keeps the chat pinned to the latest exchange, preparing the surface for streaming responses.
+
+## Recommendations Experience
+
+- **Panel Entry Point**: Selecting "Recommendations" in `SectionNav` swaps the main area for `RecommendationsPanel`, which currently renders bilingual copy to highlight the data provenance message.
+- **Data Source**: `lib/constants/recommendations.ts` hosts `recommendedAlbums`, a mock list of eight albums typed via `RecommendedAlbum`. Each record combines genre tags, highlights, and recap text that can later be replaced by `/recommend` payloads.
+- **Progressive Disclosure**: The panel shows six cards by default and surfaces a "Más recomendaciones" button when more static data is available. The button reveals three additional cards per click, matching the intended incremental loading experience.
+- **Card Layout**: `RecommendationCard` standardizes the treatment of recurrence tags, album metadata, and highlight statements, providing a drop-in template for backend-driven playlists.
+
+## Theming, Styling, and Localization Notes
+
+- **Tailwind-Only Styling**: All components rely on Tailwind v4 utility classes and the CSS custom properties defined in `app/globals.css`. No custom CSS files are introduced beyond the theme tokens.
+- **Dark Mode Tokens**: `:root[data-theme="dark"]` overrides base colors and enables `color-scheme: dark`, so the UI reacts to both the stored preference and `prefers-color-scheme` when no manual override exists.
+- **Localized UI Strings**: Recommendation headlines intentionally demonstrate Spanish marketing copy while the rest of the UI remains in English, ensuring the layout tolerates mixed-language payloads.
+
+## API Integration Checklist
+
+1. **/ask**: Replace the timeout stub inside `useChatSession` with a `fetch` call that streams assistant deltas, populating `confidence` and `citations` from the backend response.
+2. **/recommend**: Swap the local `recommendedAlbums` import for a hook that fetches personalized playlists using the active chat context (or user metadata) as the payload.
+3. **/connect**: Extend the workspace with an additional SectionNav entry once the graph exploration surface is ready; the layout already anticipates multiple sections.
+4. **Error + Loading States**: Surface optimistic toasts or inline alerts in `ChatComposer` and `RecommendationsPanel` to mirror backend latency.
+
 ## Documentation Style
 
 - **No emojis in documentation or developer-facing text**: Documentation, README, changelogs, commit messages, code comments, and generated UI strings must not contain emoji characters unless explicitly requested. Keep documentation plain, professional, and searchable.
