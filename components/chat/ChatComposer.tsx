@@ -8,28 +8,30 @@ type ChatComposerProps = {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
 
-const ChatComposer = ({ inputValue, isResponding, onInputChange, onSubmit }: ChatComposerProps) => {
+const ChatComposer = ({
+  inputValue,
+  isResponding,
+  onInputChange,
+  onSubmit,
+}: ChatComposerProps) => {
   return (
-    <form onSubmit={onSubmit} className="sticky bottom-0 mx-auto w-full max-w-5xl px-6 pb-8">
-      <div className="rounded-3xl border border-zinc-200 bg-white/90 px-6 py-4 shadow-2xl shadow-indigo-100/60 backdrop-blur dark:border-indigo-800/40 dark:bg-indigo-950/70 dark:shadow-black/40">
-        <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-400">
+    <form onSubmit={onSubmit} className="sticky bottom-0 mx-auto w-full">
+      <div className="space-y-4 rounded-3xl border border-border bg-surface-strong px-6 py-5 shadow-[0_32px_110px_-60px_rgba(15,23,42,0.55)] backdrop-blur dark:shadow-[0_40px_110px_-70px_rgba(0,0,0,0.9)]">
+        <label className="block text-xs font-semibold uppercase tracking-wide text-muted">
           Prompt
         </label>
         <textarea
           value={inputValue}
           onChange={(event) => onInputChange(event.target.value)}
-          placeholder="Ask for blends, new releases, or graph connections…"
+          placeholder="Ask for anything music related..."
           rows={3}
-          className="w-full resize-none bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-400"
+          className="w-full resize-none rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-foreground transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 placeholder:text-muted"
         />
-        <div className="mt-4 flex items-center justify-between">
-          <p className="text-xs text-zinc-400">
-            Powered by /ask · responds with citations and tempo plans.
-          </p>
+        <div className="flex justify-end">
           <button
             type="submit"
             disabled={!inputValue.trim() || isResponding}
-            className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-400"
+            className="inline-flex items-center gap-2 rounded-2xl border border-transparent bg-gradient-to-r from-primary via-secondary to-accent bg-[length:220%_220%] animate-gradient-slow px-5 py-2 text-sm font-semibold text-white shadow-[0_20px_40px_-25px_rgba(67,56,202,0.8)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <FiSend className="h-4 w-4" />
             Send

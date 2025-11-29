@@ -31,7 +31,6 @@ export const initialMessages: ChatMessage[] = [
 export const navItems = [
   { id: "chat", label: "Chat" },
   { id: "recommendations", label: "Recommendations" },
-  { id: "connections", label: "Connections" },
 ];
 
 export const genreTags = ["#electronic", "#pop", "#ambient", "#jazztronica"];

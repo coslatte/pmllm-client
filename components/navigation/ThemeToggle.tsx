@@ -14,7 +14,7 @@ const ThemeToggle = ({ mode, onToggle }: ThemeToggleProps) => {
     <button
       type="button"
       onClick={onToggle}
-      className="inline-flex items-center gap-2 rounded-2xl border border-indigo-200 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-indigo-600 shadow-sm shadow-indigo-100/70 transition hover:bg-white/90 hover:text-indigo-700 backdrop-blur dark:border-indigo-800 dark:bg-indigo-950/40 dark:text-indigo-200 dark:hover:bg-indigo-900/60 dark:shadow-black/40"
+      className="inline-flex items-center gap-2 rounded-2xl border border-border bg-surface px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted shadow-[0_18px_40px_-30px_rgba(67,56,202,0.65)] transition hover:border-primary hover:text-foreground"
     >
       {isDark ? <FiSun className="h-4 w-4" /> : <FiMoon className="h-4 w-4" />}
       {isDark ? "Light" : "Dark"} mode
