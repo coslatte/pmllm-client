@@ -17,15 +17,6 @@ export const initialMessages: ChatMessage[] = [
       "Line up a study playlist that keeps the energy steady but not distracting. I need 45 minutes of focus with subtle vocal layers.",
     timestamp: "Today · 08:22",
   },
-  {
-    id: "msg-3",
-    role: "assistant",
-    content:
-      "Starting with Chromatics-inspired pads, then easing into rhythmic neo-soul instrumentals. I will keep the tempo between 92 and 108 BPM so it feels grounded without dragging.",
-    timestamp: "Today · 08:22",
-    confidence: "0.91",
-    citations: ["Gemma 3 · RAG", "Knowledge Graph"],
-  },
 ];
 
 export const navItems = [

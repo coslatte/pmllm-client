@@ -5,7 +5,11 @@ import {
   QueryRequest,
   QueryResponse,
   RecommendationResponse,
+  AlbumRecommendationsResponse,
+  AlbumRecommendationsRequest,
   SendMessagePayload,
+  UserPreferences,
+  MusicMetadataResponse,
 } from "@/lib/api/types";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_PMLLM_API_BASE_URL ?? "/api/pmllm";
@@ -83,4 +87,43 @@ export const fetchRecommendations = (userId: string) =>
   apiFetch<RecommendationResponse>(`/recommendations?user_id=${encodeURIComponent(userId)}`, {
     method: "POST",
     body: JSON.stringify({ user_id: userId }),
+  });
+
+export const getUserPreferences = (userId: string) =>
+  // Note: According to API docs, there's no GET endpoint for preferences
+  // This will always fail - preferences should be stored locally
+  apiFetch<UserPreferences>(`/users/${encodeURIComponent(userId)}/preferences`);
+
+export const updateUserPreferences = (userId: string, preferences: Partial<Omit<UserPreferences, 'id' | 'user_id' | 'created_at' | 'updated_at'>>) =>
+  apiFetch<UserPreferences>("/preferences", {
+    method: "POST",
+    body: JSON.stringify({
+      user_id: userId,
+      fav_genres: preferences.favorite_genres || [],
+      fav_artists: preferences.favorite_artists || [],
+      fav_instruments: preferences.favorite_tags || [], // Using tags as instruments
+      // Note: API doesn't support disliked_* fields, so we'll ignore them
+    }),
+  });
+
+export const createUserPreferences = (userId: string, preferences: Omit<UserPreferences, 'id' | 'created_at' | 'updated_at'>) =>
+  apiFetch<UserPreferences>("/preferences", {
+    method: "POST",
+    body: JSON.stringify({
+      user_id: userId,
+      fav_genres: preferences.favorite_genres || [],
+      fav_artists: preferences.favorite_artists || [],
+      fav_instruments: preferences.favorite_tags || [], // Using tags as instruments
+    }),
+  });
+
+export const getMusicMetadata = () =>
+  // Note: This endpoint doesn't exist in the API docs
+  // Will always fail - using mock data in components instead
+  apiFetch<MusicMetadataResponse>("/music/metadata");
+
+export const fetchAlbumRecommendations = (request: AlbumRecommendationsRequest) =>
+  apiFetch<AlbumRecommendationsResponse>("/recommendations/albums", {
+    method: "POST",
+    body: JSON.stringify(request),
   });

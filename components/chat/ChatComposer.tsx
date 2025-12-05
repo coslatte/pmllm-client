@@ -32,7 +32,13 @@ const ChatComposer = ({
         <textarea
           value={inputValue}
           onChange={(event) => onInputChange(event.target.value)}
-          placeholder="Ask for anything music related..."
+          onKeyDown={(event) => {
+            if (event.ctrlKey && event.key === "Enter" && !isDisabled) {
+              event.preventDefault();
+              onSubmit(event as unknown as FormEvent<HTMLFormElement>);
+            }
+          }}
+          placeholder="Ask for anything music related... (Ctrl + Enter to send)"
           rows={3}
           className="w-full resize-none rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-foreground transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 placeholder:text-muted"
         />

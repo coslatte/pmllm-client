@@ -8,13 +8,13 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-const normalizeTargetUrl = (request: NextRequest, segments: string[] = []) => {
+const normalizeTargetUrl = (segments: string[], search: string) => {
   const targetPath = segments.join("/");
   const url = new URL(BACKEND_BASE_URL);
   const pathPrefix = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname;
   const joinedPath = [pathPrefix, targetPath].filter(Boolean).join("/");
   url.pathname = `/${joinedPath}`.replace(/\/+/, "/");
-  url.search = request.nextUrl.search;
+  url.search = search;
   return url.toString();
 };
 
@@ -35,7 +35,7 @@ const buildRequestInit = async (request: NextRequest) => {
   } satisfies RequestInit;
 };
 
-const forwardRequest = async (request: NextRequest, segments: string[] = []) => {
+const forwardRequest = async (targetUrl: string, init: RequestInit) => {
   if (!BACKEND_BASE_URL) {
     return NextResponse.json(
       { message: "Missing PMLLM_BACKEND_URL environment variable" },
@@ -43,12 +43,17 @@ const forwardRequest = async (request: NextRequest, segments: string[] = []) => 
     );
   }
 
-  const targetUrl = normalizeTargetUrl(request, segments);
-  const init = await buildRequestInit(request);
+  // Log request start
+  const startTime = Date.now();
+  console.log(`[API Proxy] ${init.method} ${targetUrl} - Start`);
+
   const response = await fetch(targetUrl, {
     ...init,
     redirect: "manual",
   });
+
+  const duration = Date.now() - startTime;
+  console.log(`[API Proxy] ${init.method} ${targetUrl} - ${response.status} in ${duration}ms`);
 
   const bufferedBody = await response.arrayBuffer();
   const nextResponse = new NextResponse(bufferedBody, {
@@ -62,6 +67,25 @@ const forwardRequest = async (request: NextRequest, segments: string[] = []) => 
   });
 
   return nextResponse;
+};
+
+// Simple in-memory cache for GET requests
+const cache = new Map<string, { data: Response; timestamp: number }>();
+const CACHE_TTL = 60 * 1000; // 60 seconds
+
+const getCachedResponse = async (key: string, fetcher: () => Promise<Response>): Promise<Response> => {
+  const now = Date.now();
+  const cached = cache.get(key);
+
+  if (cached && (now - cached.timestamp) < CACHE_TTL) {
+    console.log(`[API Proxy] Cache hit for ${key}`);
+    return cached.data.clone(); // Clone to avoid issues with consumed body
+  }
+
+  console.log(`[API Proxy] Cache miss for ${key}`);
+  const response = await fetcher();
+  cache.set(key, { data: response.clone(), timestamp: now });
+  return response;
 };
 
 const handleOptions = () => {
@@ -81,7 +105,16 @@ const createHandler = (method?: string) => {
 
     const params = "then" in context.params ? await context.params : context.params;
     const segments = params?.path ?? [];
-    return forwardRequest(request, segments);
+
+    const targetUrl = normalizeTargetUrl(segments, request.nextUrl.search);
+    const init = await buildRequestInit(request);
+
+    if (method === "GET") {
+      const cacheKey = `api-proxy-${targetUrl}`;
+      return getCachedResponse(cacheKey, () => forwardRequest(targetUrl, init));
+    }
+
+    return forwardRequest(targetUrl, init);
   };
 };
 

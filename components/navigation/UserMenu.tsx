@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import { genreTags } from "@/lib/constants/chat";
 import { FiUser } from "react-icons/fi";
 
-const UserMenu = () => {
+type UserMenuProps = {
+  onOpenPreferences?: () => void;
+};
+
+const UserMenu = ({ onOpenPreferences }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +32,7 @@ const UserMenu = () => {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex w-full items-center justify-between rounded-2xl border border-border bg-surface-strong px-4 py-3 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary"
+        className="flex w-full items-center justify-between rounded-md border border-border bg-surface-strong px-4 py-3 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary"
       >
         <span className="flex items-center gap-2">
           <FiUser className="h-4 w-4" />
@@ -38,28 +42,20 @@ const UserMenu = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-14 left-0 w-64 rounded-3xl border border-border bg-surface p-5 text-sm text-muted shadow-[0_35px_120px_-45px_rgba(15,23,42,0.45)]">
+        <div className="absolute bottom-14 left-0 w-64 rounded-md border border-border bg-surface p-5 text-sm text-muted shadow-[0_35px_120px_-45px_rgba(15,23,42,0.45)]">
+          {/* USER INFO */}
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex-col space-y-1">
               <p className="text-base font-semibold text-foreground">
-                Arianna Duarte
+                Gabriel Paz
               </p>
               <p className="text-xs uppercase tracking-wide text-muted opacity-70">
-                ID · 9F32-PLM
+                ID - LMAO-SOME-ID-1234
               </p>
             </div>
-            <span className="rounded-full bg-gradient-to-r from-primary via-secondary to-accent bg-[length:220%_220%] animate-gradient-slow px-3 py-1 text-xs font-semibold text-white">
-              Live
-            </span>
           </div>
 
-          <div className="mt-4 space-y-1 text-xs">
-            <p className="font-semibold text-foreground opacity-80">Metadata</p>
-            <p className="text-muted">
-              Focus · graph insights · nightly sessions
-            </p>
-          </div>
-
+          {/* TAGS / GENRES */}
           <div className="mt-4 flex flex-wrap gap-2">
             {genreTags.map((tag) => (
               <span
@@ -69,6 +65,19 @@ const UserMenu = () => {
                 {tag}
               </span>
             ))}
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                onOpenPreferences?.();
+                setIsOpen(false); // Close the menu after clicking
+              }}
+              className="mt-6 w-full rounded-md border border-border bg-surface-strong px-4 py-2 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary"
+            >
+              Set Preferences
+            </button>
           </div>
         </div>
       )}

@@ -1,5 +1,12 @@
 import { navItems } from "@/lib/constants/chat";
-import { FiHash, FiMessageSquare, FiMusic, FiPlus } from "react-icons/fi";
+import {
+  FiHash,
+  FiMessageSquare,
+  FiMusic,
+  FiPlus,
+  FiSettings,
+  FiX,
+} from "react-icons/fi";
 
 type SectionNavProps = {
   activeId: string;
@@ -8,11 +15,13 @@ type SectionNavProps = {
   activeChatId: string;
   onSelectChat: (id: string) => void;
   onCreateChat: () => void;
+  onDeleteChat: (id: string) => void;
 };
 
 const iconMap = {
   chat: FiMessageSquare,
   recommendations: FiMusic,
+  preferences: FiSettings,
 };
 
 const SectionNav = ({
@@ -22,6 +31,7 @@ const SectionNav = ({
   activeChatId,
   onSelectChat,
   onCreateChat,
+  onDeleteChat,
 }: SectionNavProps) => {
   return (
     <section className="rounded-3xl border border-border bg-surface p-4 text-sm shadow-[0_28px_80px_-60px_rgba(15,23,42,0.4)]">
@@ -41,19 +51,32 @@ const SectionNav = ({
           {chats.map((chat) => {
             const isActiveChat = chat.id === activeChatId;
             return (
-              <button
+              <div
                 key={chat.id}
-                type="button"
-                onClick={() => onSelectChat(chat.id)}
                 className={`flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left font-medium transition ${
                   isActiveChat
-                    ? "border-transparent bg-gradient-to-r from-primary via-secondary to-accent bg-[length:220%_220%] animate-gradient-slow text-white shadow-[0_15px_45px_-30px_rgba(67,56,202,0.8)]"
+                    ? "border-transparent bg-linear-to-r from-primary via-secondary to-accent bg-size-[220%_220%] animate-gradient-slow text-white shadow-[0_15px_45px_-30px_rgba(67,56,202,0.8)]"
                     : "border-border text-muted hover:border-primary/60 hover:text-foreground"
                 }`}
               >
-                <FiHash className="h-4 w-4" />
-                <span className="truncate">{chat.title}</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => onSelectChat(chat.id)}
+                  className="flex flex-1 items-center gap-3"
+                >
+                  <FiHash className="h-4 w-4" />
+                  <span className="truncate">{chat.title}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onDeleteChat(chat.id)}
+                  className={`h-4 w-4 rounded p-0.5 transition hover:bg-black/10 ${
+                    isActiveChat ? "text-white/80 hover:text-white" : "text-muted hover:text-foreground"
+                  }`}
+                >
+                  <FiX className="h-3 w-3" />
+                </button>
+              </div>
             );
           })}
         </div>
@@ -66,7 +89,6 @@ const SectionNav = ({
           </p>
 
           {/* CHAT CONTENT */}
-
           {navItems.map((item) => {
             const Icon = iconMap[item.id as keyof typeof iconMap];
             const isActive = item.id === activeId;
@@ -78,7 +100,7 @@ const SectionNav = ({
                 onClick={() => onSelect(item.id)}
                 className={`flex items-center justify-between rounded-2xl border px-4 py-2 text-left font-medium transition ${
                   isActive
-                    ? "border-transparent bg-gradient-to-r from-primary via-secondary to-accent bg-[length:220%_220%] animate-gradient-slow text-white"
+                    ? "border-transparent bg-linear-to-r from-primary via-secondary to-accent bg-size-[220%_220%] animate-gradient-slow text-white"
                     : "border-border text-muted hover:border-primary/60 hover:text-foreground"
                 }`}
               >
@@ -86,7 +108,13 @@ const SectionNav = ({
                   <Icon className="h-4 w-4" />
                   {item.label}
                 </span>
-                <span className={`text-xs ${isActive ? "text-white/80" : "text-muted"}`}>›</span>
+                <span
+                  className={`text-xs ${
+                    isActive ? "text-white/80" : "text-muted"
+                  }`}
+                >
+                  ›
+                </span>
               </button>
             );
           })}

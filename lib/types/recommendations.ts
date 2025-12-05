@@ -4,4 +4,5 @@ export type RecommendationItem = {
   description: string;
   meta?: string;
   score?: number;
+  source?: 'database' | 'rag' | 'fallback';
 };

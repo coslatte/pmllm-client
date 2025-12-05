@@ -69,6 +69,74 @@ export type RecommendationItemPayload = {
   reason: string;
 };
 
+export type AlbumRecommendationItem = {
+  release_id: string;
+  release_name: string;
+  release_group_name: string;
+  artists: string[];
+  matched_genres: string[];
+  tags: string[];
+  connections: string[];
+  matched_count: number;
+  score: number;
+};
+
+export type AlbumRecommendationsResponse = {
+  generated_from: string[];
+  exclude_filters: string[];
+  recommendations: AlbumRecommendationItem[];
+};
+
+export type AlbumRecommendationsRequest = {
+  user_id?: string;
+  include_genres?: string[];
+  exclude_genres?: string[];
+  limit?: number;
+  min_genre_overlap?: number;
+};
+
 export type RecommendationResponse = {
   recommendations: RecommendationItemPayload[];
+};
+
+export type UserPreferences = {
+  id: string;
+  user_id: string;
+  favorite_genres: string[];
+  favorite_artists: string[];
+  favorite_tags: string[];
+  preferred_moods: string[];
+  disliked_genres: string[];
+  disliked_artists: string[];
+  disliked_tags: string[];
+  created_at: string;
+  updated_at: string;
+};
+
+export type GenreInfo = {
+  name: string;
+  count: number;
+  description?: string;
+};
+
+export type TagInfo = {
+  name: string;
+  count: number;
+  description?: string;
+};
+
+export type ArtistInfo = {
+  name: string;
+  genres: string[];
+  tags: string[];
+  popularity_score?: number;
+};
+
+export type MusicMetadataResponse = {
+  genres: GenreInfo[];
+  tags: TagInfo[];
+  artists: ArtistInfo[];
+  total_genres: number;
+  total_tags: number;
+  total_artists: number;
 };
