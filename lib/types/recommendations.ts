@@ -1,8 +1,7 @@
-export type RecommendedAlbum = {
+export type RecommendationItem = {
   id: string;
   title: string;
-  artist: string;
-  genre: string;
-  recurrenceTag: string;
-  highlight: string;
+  description: string;
+  meta?: string;
+  score?: number;
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 
 import ChatComposer from "@/components/chat/ChatComposer";
 import ChatHeader from "@/components/chat/ChatHeader";
@@ -28,9 +28,13 @@ const ChatWorkspace = () => {
     messages,
     inputValue,
     isResponding,
+    isBootstrapping,
+    isReady,
+    error,
     endOfMessagesRef,
     handleInputChange,
     handleSubmit,
+    retrySession,
   } = useChatSession();
   const [activeSection, setActiveSection] = useState("chat");
   const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
@@ -39,13 +43,16 @@ const ChatWorkspace = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const stored = window.localStorage.getItem("pmllm-theme");
-    if (stored === "light" || stored === "dark") {
-      setThemeMode(stored);
-      return;
-    }
+    const resolved: "light" | "dark" =
+      stored === "light" || stored === "dark"
+        ? stored
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setThemeMode(prefersDark ? "dark" : "light");
+    startTransition(() => {
+      setThemeMode(resolved);
+    });
   }, []);
 
   useEffect(() => {
@@ -90,6 +97,9 @@ const ChatWorkspace = () => {
                   <MessageList
                     messages={messages}
                     isResponding={isResponding}
+                    isBootstrapping={isBootstrapping}
+                    error={error}
+                    onRetry={retrySession}
                     endOfMessagesRef={endOfMessagesRef}
                   />
                 </section>
@@ -109,6 +119,8 @@ const ChatWorkspace = () => {
         <ChatComposer
           inputValue={inputValue}
           isResponding={isResponding}
+          isReady={isReady}
+          isBootstrapping={isBootstrapping}
           onInputChange={handleInputChange}
           onSubmit={handleSubmit}
         />
