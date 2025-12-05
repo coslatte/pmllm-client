@@ -1,45 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --surface: #ffffffee;
+  --background: #f4f6fb;
+  --surface: rgba(255, 255, 255, 0.94);
   --surface-strong: #ffffff;
-  --border-color: rgba(15, 23, 42, 0.08);
+  --border-color: rgba(15, 23, 42, 0.12);
   --foreground: #0f172a;
-  --muted: #475569;
-  --primary: #4f46e5;
-  --secondary: #a78bfa;
+  --muted: #5f6b86;
+  --primary: #4338ca;
+  --secondary: #7c3aed;
+  --accent: #22d3ee;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border-color);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 :root[data-theme="dark"] {
-  --background: #0f142b;
-  --surface: #101735e6;
-  --surface-strong: #111a3a;
-  --border-color: rgba(167, 139, 250, 0.35);
-  --foreground: #e0e7ff;
-  --muted: #a5b4fc;
-  --primary: #6366f1;
-  --secondary: #818cf8;
+  --background: #11153a;
+  --surface: rgba(18, 22, 54, 0.94);
+  --surface-strong: #161b46;
+  --border-color: rgba(148, 163, 184, 0.25);
+  --foreground: #f1f5ff;
+  --muted: #b3bce5;
+  --primary: #7c83ff;
+  --secondary: #a78bfa;
+  --accent: #4cc9f0;
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --background: #0f142b;
-    --surface: #101735e6;
-    --surface-strong: #111a3a;
-    --border-color: rgba(167, 139, 250, 0.35);
-    --foreground: #e0e7ff;
-    --muted: #a5b4fc;
-    --primary: #6366f1;
-    --secondary: #818cf8;
+    --background: #11153a;
+    --surface: rgba(18, 22, 54, 0.94);
+    --surface-strong: #161b46;
+    --border-color: rgba(148, 163, 184, 0.25);
+    --foreground: #f1f5ff;
+    --muted: #b3bce5;
+    --primary: #7c83ff;
+    --secondary: #a78bfa;
+    --accent: #4cc9f0;
     color-scheme: dark;
   }
 }
@@ -50,4 +60,23 @@ body {
   font-family: var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   transition: background 250ms ease, color 250ms ease;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@layer utilities {
+  .animate-gradient-slow {
+    background-size: 220% 220%;
+    animation: gradient-shift 14s ease-in-out infinite;
+  }
 }

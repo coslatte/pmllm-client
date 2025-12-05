@@ -42,7 +42,7 @@ const MessageList = ({
 
       {isResponding && (
         <div className="flex justify-start">
-          <div className="rounded-3xl border border-indigo-100 bg-indigo-50/90 px-5 py-3 text-sm text-indigo-700 backdrop-blur dark:border-indigo-600/50 dark:bg-indigo-950/60 dark:text-indigo-200">
+          <div className="rounded-3xl border border-border bg-surface px-5 py-3 text-sm text-muted">
             Synthesizing answer…
           </div>
         </div>

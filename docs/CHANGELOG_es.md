@@ -7,6 +7,18 @@ y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.
 
 ## [Sin Liberar]
 
+### Agregado
+
+- Implementado `ChatWorkspace` con header sensible a la sección, switcher chat/recomendaciones y toggle de tema persistente usando `window.localStorage`.
+- Agregados `SectionNav`, lista de chats seed y el cajón de persona `UserMenu` para preparar la futura gestión de sesiones.
+- Incorporado `RecommendationsPanel` y `RecommendationCard` con datos mock tipados y comportamiento progresivo de "más recomendaciones" para modelar las respuestas de `/recommend`.
+- Creado `docs/client-architecture.md` + `docs/es_ES/client-architecture.md` para describir el layout modular actual, los contratos de datos y la hoja de ruta de integración.
+
+### Cambiado
+
+- Ampliado `docs/overview.md` (y sus contrapartes en español) con descripciones actualizadas del workspace, flujo de chat, experiencia de recomendaciones y checklist de APIs.
+- Sincronizada la documentación bilingüe para eliminar referencias obsoletas a Gemma y resaltar el theming de Tailwind v4 junto con notas de localización.
+
 ## [0.1.0] - 2025-11-27
 
 ### Agregado

@@ -16,13 +16,13 @@ const ChatHeader = ({
   onToggleTheme,
 }: ChatHeaderProps) => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-indigo-100/60 bg-white/90 backdrop-blur dark:border-indigo-500/30 dark:bg-indigo-950/70">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-surface backdrop-blur shadow-[0_1px_0_rgba(15,23,42,0.08)] dark:shadow-[0_1px_0_rgba(148,163,184,0.3)]">
+      <div className="flex w-full items-center justify-between gap-4 px-8 py-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-300">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             {subtitle}
           </p>
-          <h1 className="text-2xl font-semibold text-zinc-950 dark:text-indigo-50">{title}</h1>
+          <h1 className="text-xl font-semibold text-foreground">{title}</h1>
         </div>
         <ThemeToggle mode={themeMode} onToggle={onToggleTheme} />
       </div>

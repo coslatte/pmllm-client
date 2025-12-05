@@ -16,17 +16,17 @@ const RecommendationCard = ({ recommendation }: RecommendationCardProps) => {
   const scoreLabel = getScoreLabel(recommendation.score);
 
   return (
-    <article className="flex flex-col justify-between rounded-3xl border border-zinc-100 bg-white/80 p-5 shadow-lg shadow-indigo-100/50 backdrop-blur dark:border-indigo-800/40 dark:bg-indigo-950/60 dark:shadow-black/30">
+    <article className="flex flex-col justify-between rounded-3xl border border-border bg-surface-strong p-5 shadow-[0_32px_90px_-60px_rgba(15,23,42,0.55)]">
       <div className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-wide text-indigo-500">
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">
           {scoreLabel}
         </p>
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{recommendation.title}</h3>
+        <h3 className="text-lg font-semibold text-foreground">{recommendation.title}</h3>
         {recommendation.meta && (
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{recommendation.meta}</p>
+          <p className="text-sm text-muted">{recommendation.meta}</p>
         )}
       </div>
-      <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">{recommendation.description}</p>
+      <p className="mt-4 text-sm text-muted">{recommendation.description}</p>
     </article>
   );
 };
